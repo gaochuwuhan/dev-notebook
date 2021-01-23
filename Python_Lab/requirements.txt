@@ -1,0 +1,7 @@
+--index-url http://192.168.88.138:8081/repository/group-pypi/simple --trusted-host 192.168.88.138
+
+arrow==0.16.0
+# [[source]]
+# url = "http://192.168.88.138:8081/repository/group-pypi/simple --trusted-host 192.168.88.138"
+# verify_ssl = false
+# name = "home"
