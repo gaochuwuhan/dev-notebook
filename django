@@ -1,0 +1,31 @@
+##views 
+.
+├── baiapp
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py. 
+│   └── views.py
+├── hello
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── views.py
+│   └── wsgi.py
+└── manage.py
+
+bai/views.py:
+
+'''在子app中添加view'''
+from django.shortcuts import render
+from django.http import HttpResponse  #django的view返回
+# Create your views here.
+def baifirst(request):  #第一个参数必须是request
+    return HttpResponse("bai's first respone")
+def baisecond(request):
+    return HttpResponse("bai's second response")
