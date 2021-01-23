@@ -1,6 +1,5 @@
 from pyvim.connect import SmartConnectNoSSL
-from pyvim import *
-
+from pyVmomi import *
 
 
 class VmManage(object):
