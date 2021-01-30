@@ -30,10 +30,12 @@ from django.conf.urls import url
 
 from . import views
 from baiapp import urls
+from .views import render
 
 urlpatterns = [ #django默认的admin页面
     url('admin/', admin.site.urls), #路径就是route；admin.site.urls就是view参数
 ]
 urlpatterns += [    #意思是urlpatterns=urlpatterns+后面的path
-    path ('baifirst/', include('baiapp.urls')),  #去子app中将url路径写到include中，则访问“127.0.0.1:8000/baifirst/baiapp.urls的path/” 就能访问到bai.view 的response
+    path ('baiapp/', include('baiapp.urls')),  #去子app中将url路径写到include中，则访问“127.0.0.1:8000/baifirst/baiapp.urls的path/” 就能访问到bai.view 的response
 ]
+

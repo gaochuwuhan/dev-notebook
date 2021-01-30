@@ -54,7 +54,7 @@ ROOT_URLCONF = 'hello.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'], #写入templates的相对路径
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
