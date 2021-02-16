@@ -2,7 +2,7 @@ import requests
 import logging
 import json
 
-from psql import db
+# from psql import db
 logger = logging.getLogger("django")
 
 class Reqpar:
@@ -38,14 +38,14 @@ logging.error(Makereq().post(Reqpar().geturl(),Reqpar().body,Reqpar().header))
 def assert_task(id):
     assert id
 
-class ScanTask:
-    def __init__(self,id):
-        self.id=id
-        self.db=db.Opdb()  #实例化数据库
-    def get_query_result(self,sql_str):
-        msg_id=self.db.doconn(sql_str)
-        return msg_id
-    def get_vu_msg_id(self):
+# class ScanTask:
+#     def __init__(self,id):
+#         self.id=id
+#         self.db=db.Opdb()  #实例化数据库
+#     def get_query_result(self,sql_str):
+#         msg_id=self.db.doconn(sql_str)
+#         return msg_id
+    # def get_vu_msg_id(self):
         
 
 

@@ -4,8 +4,8 @@
 # def usea1():
 #     print(isinstance(b1,B))
 # usea1()
-from B.B1 import result
-result()
+from B import B1
+B1.result()
 # class P1:
 #     #name='long'
 #     def __init__(self):
