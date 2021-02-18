@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a9af509850423deb9f4cb93f17807effe9459a071179d69209613bcadd37e0be"
+            "sha256": "9ac8c85387d04fc63f7672b9317b14c43881b7484fae0596c61d2acbf8eeb83d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -59,6 +59,22 @@
             ],
             "index": "pypi",
             "version": "==3.1.6"
+        },
+        "djangorestframework": {
+            "hashes": [
+                "sha256:6dd02d5a4bd2516fb93f80360673bf540c3b6641fec8766b1da2870a5aa00b32",
+                "sha256:8b1ac62c581dbc5799b03e535854b92fc4053ecfe74bad3f9c05782063d4196b"
+            ],
+            "index": "pypi",
+            "version": "==3.11.1"
+        },
+        "djangorestframework-simplejwt": {
+            "hashes": [
+                "sha256:91dc2f362457f74efd6880a0abeb8d8bc07c3de46deb2c2c38633157ae4a9340",
+                "sha256:926a4c313ef2ec82d7ab808ae2959debeaf9c7de61490fccf2ebe28e4adacfee"
+            ],
+            "index": "pypi",
+            "version": "==4.5.0"
         },
         "idna": {
             "hashes": [
@@ -143,6 +159,13 @@
                 "sha256:3b80836aa6d1feeaa108e046da6423ab8f6ceda6468545ae8d02d9d58d18818a"
             ],
             "version": "==1.10.0"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:a5c70a06e1f33d81ef25eecd50d50bd30e34de1ca8b2b9fa3fe0daaabcf69bf7",
+                "sha256:b70b15f89dc69b993d8a8d32c299032d5355c82f9b5b7e851d1a6d706dffe847"
+            ],
+            "version": "==2.0.1"
         },
         "pyparsing": {
             "hashes": [
@@ -292,10 +315,10 @@
         },
         "prompt-toolkit": {
             "hashes": [
-                "sha256:7e966747c18ececaec785699626b771c1ba8344c8d31759a1915d6b12fad6525",
-                "sha256:c96b30925025a7635471dc083ffb6af0cc67482a00611bd81aeaeeeb7e5a5e12"
+                "sha256:0fa02fa80363844a4ab4b8d6891f62dd0645ba672723130423ca4037b80c1974",
+                "sha256:62c811e46bd09130fb11ab759012a4ae385ce4fb2073442d1898867a824183bd"
             ],
-            "version": "==3.0.14"
+            "version": "==3.0.16"
         },
         "ptyprocess": {
             "hashes": [
@@ -306,10 +329,10 @@
         },
         "pygments": {
             "hashes": [
-                "sha256:bc9591213a8f0e0ca1a5e68a479b4887fdc3e75d0774e5c71c31920c427de435",
-                "sha256:df49d09b498e83c1a73128295860250b0b7edd4c723a32e9bc0d295c7c2ec337"
+                "sha256:37a13ba168a02ac54cc5891a42b1caec333e59b66addb7fa633ea8a6d73445c0",
+                "sha256:b21b072d0ccdf29297a82a2363359d99623597b8a265b8081760e4d0f7153c88"
             ],
-            "version": "==2.7.4"
+            "version": "==2.8.0"
         },
         "traitlets": {
             "hashes": [

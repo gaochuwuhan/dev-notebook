@@ -14,7 +14,8 @@ psycopg2-binary = "==2.8.6"
 pytest = "*"
 ipaddress = "*"
 arrow = "*"
-
+djangorestframework = "==3.11.1"
+djangorestframework-simplejwt = "==4.5.0"
 
 [requires]
 python_version = "3.8"
