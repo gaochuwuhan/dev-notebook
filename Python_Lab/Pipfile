@@ -16,6 +16,11 @@ ipaddress = "*"
 arrow = "*"
 djangorestframework = "==3.11.1"
 djangorestframework-simplejwt = "==4.5.0"
+django-field-history = "==0.8.0"
+celery = "==4.4.2"
+redis = "==3.5.3"
+ipython = "*"
+flower = "*"
 
 [requires]
 python_version = "3.8"

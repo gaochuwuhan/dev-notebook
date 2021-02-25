@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'baiapp',
     'rest_framework',
+    "field_history",
 ]
 
 MIDDLEWARE = [
