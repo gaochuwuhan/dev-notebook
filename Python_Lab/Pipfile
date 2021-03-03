@@ -21,6 +21,7 @@ celery = "==4.4.2"
 redis = "==3.5.3"
 ipython = "*"
 flower = "*"
+django-celery-beat = "==1.5.0"
 
 [requires]
 python_version = "3.8"
