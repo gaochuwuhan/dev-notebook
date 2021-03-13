@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from ..models.friends import Friend
-from ..serializers.friends_serializers import FriendSerializers
+from baiapp.models import Friend
+from baiapp.serializers import FriendSerializers
 
 '''使用viewsets实现对数据的增删改查'''
 class FriendViewset(viewsets.ModelViewSet):

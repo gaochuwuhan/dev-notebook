@@ -1,5 +1,5 @@
 from django import http
-from ..models.friends import Friend
+from baiapp.models.friends import Friend
 from django.views import View
 import json
 from django.http import HttpResponse

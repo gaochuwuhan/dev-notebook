@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.friends import Friend
+from baiapp.models.friends import Friend
 
 class FriendSerializers(serializers.ModelSerializer): #模型序列化
     
