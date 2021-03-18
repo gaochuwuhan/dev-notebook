@@ -1,7 +1,10 @@
 '''在子app中添加url'''
 from django.urls import path
 from django.conf.urls import url,include
-from baiapp.views import text,jsonview,render,friends,rest_friends
+from baiapp.views import ArticleViewsets
+from baiapp.views import (
+    text,jsonview,render,friends,rest_friends
+)
 from rest_framework.routers import DefaultRouter
 
 '''用drf注册路由'''
@@ -9,6 +12,7 @@ router=DefaultRouter()
 router.register(r'friends',rest_friends.FriendViewset) 
 #搭配根url和此文件的url配置，路径为baiapp/drf/friends
 
+router.register(r'article',ArticleViewsets)
 
 urlpatterns = [
 

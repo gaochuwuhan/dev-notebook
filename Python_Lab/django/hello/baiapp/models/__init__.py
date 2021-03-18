@@ -1,2 +1,3 @@
+#只导入drf相关模型类
 from .friends import *
-from .device import *
+from .article import *
