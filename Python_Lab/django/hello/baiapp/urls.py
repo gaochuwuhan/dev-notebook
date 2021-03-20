@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls import url,include
 from baiapp.views import ArticleViewsets
 from baiapp.views import (
-    text,jsonview,render,friends,rest_friends
+    text,jsonview,render,friends,rest_friends,normal_article
 )
 from rest_framework.routers import DefaultRouter
 
@@ -13,6 +13,7 @@ router.register(r'friends',rest_friends.FriendViewset)
 #搭配根url和此文件的url配置，路径为baiapp/drf/friends
 
 router.register(r'article',ArticleViewsets)
+# router.register(r'normalarticle',normal_article.article_list)
 
 urlpatterns = [
 
@@ -29,5 +30,7 @@ urlpatterns += [
 
 #drf的url
 urlpatterns += [
-    path('drf/',include(router.urls))
+    path('drf/',include(router.urls)),
+    path('drf/articlelist/',normal_article.article_list),
+
 ]
