@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from baiapp.models.article import Article
+from baiapp.models.article import Article,Category
 
 # class ArticleSerilizers(serializers.Serializer): #普通序列化
 #     '''serializers.Serializer相对于serializers.ModelSerializer要把所有字段的限制也写上'''
@@ -37,4 +37,10 @@ class ArticleSerilizers(serializers.ModelSerializer):
     
     class Meta:
         model =  Article
-        fields = ('id','vnum','title')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+        fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+
+class CategorySerilizers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = '__all__'

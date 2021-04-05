@@ -31,6 +31,6 @@ urlpatterns += [
 #drf的url
 urlpatterns += [
     path('drf/',include(router.urls)),
-    path('drf/articlelist/',normal_article.article_list),
-
+    path('drf/django_article/',normal_article.django_article),
+    path('drf/drf_article/',normal_article.drf_articleview),
 ]

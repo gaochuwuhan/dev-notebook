@@ -13,7 +13,7 @@ fields = ("task_id", "state", "data")
 sql_str = f"select id from api_switchtask WHERE ip_manage = '192.168.88.249'" "order by start_time desc limit 1"
 cur.execute(sql_str) 
 res =  cur.fetchall()  #cur.fetchall()接收为一个元组的列表例如[(73,), (74,), (75,), (70,)]
-print(res)  
+assert res[0][0]
 # task_id=str(list(map(lambda x: x[0], res)))
 # # print('task id is',task_id)
 # sqls = (
