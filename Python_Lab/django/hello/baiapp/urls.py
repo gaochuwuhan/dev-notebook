@@ -33,4 +33,5 @@ urlpatterns += [
     path('drf/',include(router.urls)),
     path('drf/django_article/',normal_article.django_article),
     path('drf/drf_article/',normal_article.drf_articleview),
+    path('drf/django_article/<int:pk>/',normal_article.article_detail,name='articl∫e detail'), #int里的pk是因为view中的函数pk
 ]

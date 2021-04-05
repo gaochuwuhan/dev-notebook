@@ -15,7 +15,7 @@ logger=logging.getLogger("django")
 '''用的是django的http request和response '''
 
 def django_article(request):
-    
+    #返回所有书籍
     if request.method == 'GET':
         articles = Article.objects.all()
         ser = ArticleSerilizers(articles,many=True)
@@ -36,6 +36,40 @@ def django_article(request):
             return HttpResponse(json_data,content_type='application/json',status=201)
             
         return JsonResponse(re_ser.errors,status=400)
+
+#获取单个书籍
+def article_detail(request,pk):
+    '''先对请求的书籍id是否存在做一个判断，不存在则返回404'''
+    try:
+        art=Article.objects.get(pk=pk)
+    except Article.DoesNotExist as e:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        # art=Article.objects.get(pk=pk)
+        ser=ArticleSerilizers(instance=art)
+        json_data=ser.data
+        return JsonResponse(json_data,status=200)
+    elif request.method == 'PUT':
+        data=JSONParser().parse(request) #put传body时要把需要的字段都传进来
+        ser=ArticleSerilizers(instance=art,data=data)  #put方法要先把原来的数据调出来，再进行某个字段的更改，所以这个序列化两个参数都要写
+        if ser.is_valid():
+            ser.save()
+            return JsonResponse(ser.data,status=201)    #put/post/patch的返回码都是201
+        return JsonResponse(ser.errors,status=400)  #没通过校验的返回
+    elif request.method == 'PATCH': #patch传body时可以不把所有字段都写进body里，把想改的不分写成json即可
+        data=JSONParser().parse(request)
+        ser=ArticleSerilizers(instance=art,data=data,partial=True)  #partial=True代表部分更新，也是对的某个对象进行单/多个/所有字段值的更改
+        if ser.is_valid():
+            ser.save()
+            return JsonResponse(ser.data,status=201)
+        return JsonResponse(ser.errors,status=400)
+    elif request.method == 'DELETE':
+        art.delete()
+        return HttpResponse(status=204)
+
+
+
 
 '''用的是drf的request/response/status,使用的时候搭配api视图，FBV就是@api_view装饰器，CBV就是 APIView类'''
 
