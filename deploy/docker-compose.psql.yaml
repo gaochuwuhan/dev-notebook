@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  psql:
+    image: postgres:11.5
+    container_name: django_psql
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=xiaobai
+      - POSTGRES_PASSWORD=xiaobai
+      - POSTGRES_DB=django
+    restart: unless-stopped
+
+    #django后端数据库

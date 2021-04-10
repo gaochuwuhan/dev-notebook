@@ -35,12 +35,14 @@ from baiapp.models.article import Article,Category
 '''模型序列化:已经封装好了create和update方法，一般不需要重写，但根据需求可以重写'''
 class ArticleSerilizers(serializers.ModelSerializer):
     
+    category = serializers.StringRelatedField() #返回一个字符串，文章查分类的时候是多对一
     class Meta:
         model =  Article
-        fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
-
+        # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+        fields = '__all__'
 class CategorySerilizers(serializers.ModelSerializer):
 
+    articles_category = serializers.StringRelatedField(many=True) #由于一个分类对应多个文章，所以要加many=True,articles_category就是article model中外键的related_name
     class Meta:
         model = Category
         fields = '__all__'

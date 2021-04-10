@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls import url,include
 from baiapp.views import ArticleViewsets
 from baiapp.views import (
-    text,jsonview,render,friends,rest_friends,normal_article
+    text,jsonview,render,friends,rest_friends,normal_article,category_article
 )
 from rest_framework.routers import DefaultRouter
 
@@ -32,6 +32,7 @@ urlpatterns += [
 urlpatterns += [
     path('drf/',include(router.urls)),
     path('drf/django_article/',normal_article.django_article),
+    path('drf/django_category/',category_article.django_category),
     path('drf/drf_article/',normal_article.drf_articleview),
-    path('drf/django_article/<int:pk>/',normal_article.article_detail,name='articl∫e detail'), #int里的pk是因为view中的函数pk
+    path('drf/django_article/<int:pk>/',normal_article.article_detail,name='article detail'), #int里的pk是因为view中的函数pk
 ]
