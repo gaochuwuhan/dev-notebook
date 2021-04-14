@@ -33,16 +33,71 @@ from baiapp.models.article import Article,Category
     
 
 '''模型序列化:已经封装好了create和update方法，一般不需要重写，但根据需求可以重写'''
-class ArticleSerilizers(serializers.ModelSerializer):
+# class ArticleSerilizers(serializers.ModelSerializer):
     
-    category = serializers.StringRelatedField() #返回一个字符串，文章查分类的时候是多对一
+#     # category = serializers.StringRelatedField() #返回一个字符串，文章查分类的时候是多对一
+#     # category = serializers.PrimaryKeyRelatedField(read_only=True) #查询article的category字段变成Category的id，read_only=True要填不然报错
+#     # category = serializers.HyperlinkedRelatedField(
+#     #     view_name='category_detail', #因为点进去跳的是分类的详情，所以拿的是category_detail的view name
+#     #     read_only=True,
+
+#     #     )
+#     # category = serializers.SlugRelatedField(
+#     #     slug_field='name', #想让查询文章的时候category字段返回Category表的name字段
+#     #     read_only=True,
+#     # )
+#     category = serializers.HyperlinkedIdentityField(
+#         view_name='category_detail', #必写字段
+#         lookup_field='pk',
+        
+#     )
+#     class Meta:
+#         model =  Article
+#         # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+#         fields = '__all__'
+# class CategorySerilizers(serializers.ModelSerializer):
+
+#     # articles_category = serializers.StringRelatedField(many=True) #由于一个分类对应多个文章，所以要加many=True,articles_category就是article model中外键的related_name
+#     # articles_category = serializers.PrimaryKeyRelatedField(read_only=True,many=True) #查询分类的路由返回articles_category的值是article的id
+#     # articles_category = serializers.HyperlinkedRelatedField(
+#     #     view_name='article_detail',
+#     #     many=True,
+#     #     read_only=True,
+#     # )
+#     # articles_category = serializers.SlugRelatedField(
+
+#     #    slug_field='title',
+#     #    many=True, 
+#     #    read_only=True,
+
+#     # )
+#     articles_category = serializers.HyperlinkedIdentityField(
+#         view_name='article_detail',
+#         many=True,
+#     )
+#     class Meta:
+#         model = Category
+#         fields = '__all__'
+
+class ArticleSerilizers(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model =  Article
         # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
         fields = '__all__'
-class CategorySerilizers(serializers.ModelSerializer):
 
-    articles_category = serializers.StringRelatedField(many=True) #由于一个分类对应多个文章，所以要加many=True,articles_category就是article model中外键的related_name
+        extra_kwargs = {
+            'url':{'view_name':'article_detail','lookup_field':'pk'},
+            'category':{'view_name':'category_detail','lookup_field':'pk'}
+        }
+
+class CategorySerilizers(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ('id','name','articles_category','url')
+        
+        extra_kwargs = {
+            'url':{'view_name':'category_detail','lookup_field':'pk'}, #多返回一个自身url的字段
+            'articles_category':{'view_name':'article_detail','lookup_field':'pk'}
+        }

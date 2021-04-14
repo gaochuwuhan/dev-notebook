@@ -32,7 +32,8 @@ urlpatterns += [
 urlpatterns += [
     path('drf/',include(router.urls)),
     path('drf/django_article/',normal_article.django_article),
-    path('drf/django_category/',category_article.django_category),
-    path('drf/drf_article/',normal_article.drf_articleview),
-    path('drf/django_article/<int:pk>/',normal_article.article_detail,name='article detail'), #int里的pk是因为view中的函数pk
+    path('drf/django_category/',category_article.django_category,name='category_list'),
+    path('drf/category_detail/<int:pk>/',category_article.category_detail,name='category_detail'),
+    path('drf/drf_article/',normal_article.drf_articleview,name='article_list'),
+    path('drf/django_article/<int:pk>/',normal_article.article_detail,name='article_detail'), #int里的pk是因为view中的函数pk
 ]

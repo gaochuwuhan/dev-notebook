@@ -18,7 +18,7 @@ def django_category(request):
     #返回所有书籍
     if request.method == 'GET':
         categorys = Category.objects.all()
-        ser = CategorySerilizers(categorys,many=True)
+        ser = CategorySerilizers(categorys,many=True,context={'request':request})
         # return JsonResponse(ser.data,safe=False)    #返回的是序列化后的json，
         #也可以用httpresponse
         json_data=JSONRenderer().render(ser.data)
@@ -26,7 +26,7 @@ def django_category(request):
     
     elif request.method == 'POST': #反序列化
         data = JSONParser().parse(request)  #取出request里的data，转换为python dict
-        re_ser = CategorySerilizers(data=data)
+        re_ser = CategorySerilizers(data=data,context={'request':request})
         logger.info("GET data:",type(data),'Get re_ser:',type(re_ser))
         if re_ser.is_valid():
             re_ser.save()
@@ -47,19 +47,19 @@ def category_detail(request,pk):
 
     if request.method == 'GET':
         # art=Article.objects.get(pk=pk)
-        ser=CategorySerilizers(instance=cat)
+        ser=CategorySerilizers(instance=cat,context={'request':request})
         json_data=ser.data
         return JsonResponse(json_data,status=200)
     elif request.method == 'PUT':
         data=JSONParser().parse(request) #put传body时要把需要的字段都传进来
-        ser=CategorySerilizers(instance=cat,data=data)  #put方法要先把原来的数据调出来，再进行某个字段的更改，所以这个序列化两个参数都要写
+        ser=CategorySerilizers(instance=cat,data=data,context={'request':request})  #put方法要先把原来的数据调出来，再进行某个字段的更改，所以这个序列化两个参数都要写
         if ser.is_valid():
             ser.save()
             return JsonResponse(ser.data,status=201)    #put/post/patch的返回码都是201
         return JsonResponse(ser.errors,status=400)  #没通过校验的返回
     elif request.method == 'PATCH': #patch传body时可以不把所有字段都写进body里，把想改的不分写成json即可
         data=JSONParser().parse(request)
-        ser=CategorySerilizers(instance=cat,data=data,partial=True)  #partial=True代表部分更新，也是对的某个对象进行单/多个/所有字段值的更改
+        ser=CategorySerilizers(instance=cat,data=data,partial=True,context={'request':request})  #partial=True代表部分更新，也是对的某个对象进行单/多个/所有字段值的更改
         if ser.is_valid():
             ser.save()
             return JsonResponse(ser.data,status=201)
