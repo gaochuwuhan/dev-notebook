@@ -79,25 +79,80 @@ from baiapp.models.article import Article,Category
 #         model = Category
 #         fields = '__all__'
 
-class ArticleSerilizers(serializers.HyperlinkedModelSerializer):
+#HyperlinkedModelSerializer
+# class ArticleSerilizers(serializers.HyperlinkedModelSerializer):
+
+#     class Meta:
+#         model =  Article
+#         # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+#         fields = '__all__'
+
+#         extra_kwargs = {
+#             'url':{'view_name':'article_detail','lookup_field':'pk'},
+#             'category':{'view_name':'category_detail','lookup_field':'pk'}
+#         }
+
+# class CategorySerilizers(serializers.HyperlinkedModelSerializer):
+
+#     class Meta:
+#         model = Category
+#         fields = ('id','name','articles_category','url')
+        
+#         extra_kwargs = {
+#             'url':{'view_name':'category_detail','lookup_field':'pk'}, #多返回一个自身url的字段
+#             'articles_category':{'view_name':'article_detail','lookup_field':'pk'}
+#         }
+
+
+#序列嵌套
+
+# class ArticleSerilizers(serializers.ModelSerializer):
+
+#     class Meta:
+#         model =  Article
+#         # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+#         fields = '__all__'
+
+
+# class CategorySerilizers(serializers.ModelSerializer):
+
+#     articles_category=ArticleSerilizers(many=True)  #将反向查找的序列化的字段设定为所有符合的articles的所有字段
+#     class Meta:
+#         model = Category
+#         fields = ('id','name','articles_category')
+
+
+#depth
+# class ArticleSerilizers(serializers.ModelSerializer):
+
+#     class Meta:
+#         model =  Article
+#         # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+#         fields = '__all__'
+#         depth = 3
+
+# class CategorySerilizers(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Category
+#         fields = ('id','name','articles_category')
+
+#serializerMethodField，想返回分类的书籍数量
+        
+class ArticleSerilizers(serializers.ModelSerializer):
 
     class Meta:
         model =  Article
         # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
         fields = '__all__'
+        depth = 3
 
-        extra_kwargs = {
-            'url':{'view_name':'article_detail','lookup_field':'pk'},
-            'category':{'view_name':'category_detail','lookup_field':'pk'}
-        }
-
-class CategorySerilizers(serializers.HyperlinkedModelSerializer):
-
+class CategorySerilizers(serializers.ModelSerializer):
+    count = serializers.SerializerMethodField()  #加一个数量的序列化
     class Meta:
         model = Category
-        fields = ('id','name','articles_category','url')
-        
-        extra_kwargs = {
-            'url':{'view_name':'category_detail','lookup_field':'pk'}, #多返回一个自身url的字段
-            'articles_category':{'view_name':'article_detail','lookup_field':'pk'}
-        }
+        fields = ('id','name','articles_category','count') #记得将count加进来
+    
+    def get_count(self,obj):   #这个函数名字是有规律的，get_固定，count是上面定义的名字；参数obj代表当前model的对象
+        # return 10 #随便返回一个10，这样不管是分类几返回的书籍数量都是10
+        return obj.articles_category.count() #统计分类对象的反向查询字段articles_category的数量，引用了orm的count()方法

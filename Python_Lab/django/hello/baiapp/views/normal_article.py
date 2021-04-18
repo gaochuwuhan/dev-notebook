@@ -22,6 +22,7 @@ def django_article(request):
         # return JsonResponse(ser.data,safe=False)    #返回的是序列化后的json，
         #也可以用httpresponse
         json_data=JSONRenderer().render(ser.data)
+        logger.info('ser.data的类型是:',type(ser.data),'json_data的类型是:',type(json_data)) #分别是drf的类型和bytes类型
         return HttpResponse(json_data,content_type='application/json',status=200)
     
     elif request.method == 'POST': #反序列化
@@ -52,6 +53,7 @@ def article_detail(request,pk):
         return JsonResponse(json_data,status=200)
     elif request.method == 'PUT':
         data=JSONParser().parse(request) #put传body时要把需要的字段都传进来
+        logger.info('data的类型是:',type(data))  #请求后发现data是一个dict
         ser=ArticleSerilizers(instance=art,data=data,context={'request':request})  #put方法要先把原来的数据调出来，再进行某个字段的更改，所以这个序列化两个参数都要写
         if ser.is_valid():
             ser.save()

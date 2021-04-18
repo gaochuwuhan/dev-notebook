@@ -57,7 +57,7 @@ def category_detail(request,pk):
             ser.save()
             return JsonResponse(ser.data,status=201)    #put/post/patch的返回码都是201
         return JsonResponse(ser.errors,status=400)  #没通过校验的返回
-    elif request.method == 'PATCH': #patch传body时可以不把所有字段都写进body里，把想改的不分写成json即可
+    elif request.method == 'PATCH': #patch传body时可以不把所有字段都写进body里，把想改的部分写成json即可
         data=JSONParser().parse(request)
         ser=CategorySerilizers(instance=cat,data=data,partial=True,context={'request':request})  #partial=True代表部分更新，也是对的某个对象进行单/多个/所有字段值的更改
         if ser.is_valid():
