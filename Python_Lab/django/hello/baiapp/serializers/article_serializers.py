@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from baiapp.models.article import Article,Category
 
-# class ArticleSerilizers(serializers.Serializer): #普通序列化
+#普通序列化
+# class ArticleSerilizers(serializers.Serializer): 
 #     '''serializers.Serializer相对于serializers.ModelSerializer要把所有字段的限制也写上'''
 #     id = serializers.IntegerField(read_only=True)  #由于数据库表id是一个自动生成的字段，所以设定read_only=True不允许更改
 #     title = serializers.CharField(required=True,max_length=100) #required=True代表必要字段
@@ -137,22 +138,43 @@ from baiapp.models.article import Article,Category
 #         model = Category
 #         fields = ('id','name','articles_category')
 
-#serializerMethodField，想返回分类的书籍数量
-        
+#serializerMethodField，想返回分类的书籍数量    
+# class ArticleSerilizers(serializers.ModelSerializer):
+
+#     class Meta:
+#         model =  Article
+#         # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+#         fields = '__all__'
+#         depth = 3
+
+# class CategorySerilizers(serializers.ModelSerializer):
+#     count = serializers.SerializerMethodField()  #加一个数量的序列化
+#     class Meta:
+#         model = Category
+#         fields = ('id','name','articles_category','count') #记得将count加进来
+    
+#     def get_count(self,obj):   #这个函数名字是有规律的，get_固定，count是上面定义的名字；参数obj代表当前model的对象
+#         # return 10 #随便返回一个10，这样不管是分类几返回的书籍数量都是10
+#         return obj.articles_category.count() #统计分类对象的反向查询字段articles_category的数量，引用了orm的count()方法
+
+#source
+class MyCharField(serializers.CharField): #定义自己想返回string字段类，为了使想用的正式序列化类继承此类
+
+    def to_representation(self,value): #重写to_representation方法，为了使继承这个类的序列化类能返回指定的字段
+        data_list=[]
+        for var in value:
+            data_list.append({"title":var.title,"content":var.content}) #想让data_list是一个多个字典的list，字典中包含title和content字段
+        return data_list
 class ArticleSerilizers(serializers.ModelSerializer):
 
+    category = serializers.IntegerField(source='category.id')
     class Meta:
-        model =  Article
-        # fields = ('id','vnum','title','content')  #如果没有序列化/或者不存在的key用户写在了字典里，只要包涵'vnum','title'两个字段就能post成功
+        model = Article
         fields = '__all__'
-        depth = 3
 
 class CategorySerilizers(serializers.ModelSerializer):
-    count = serializers.SerializerMethodField()  #加一个数量的序列化
+
+    arts = MyCharField(source='articles_category.all')  #arts返回的是符合条件的article的quueryset,source的值会作为参数传到MyCharField的to_representation函数中给value
     class Meta:
         model = Category
-        fields = ('id','name','articles_category','count') #记得将count加进来
-    
-    def get_count(self,obj):   #这个函数名字是有规律的，get_固定，count是上面定义的名字；参数obj代表当前model的对象
-        # return 10 #随便返回一个10，这样不管是分类几返回的书籍数量都是10
-        return obj.articles_category.count() #统计分类对象的反向查询字段articles_category的数量，引用了orm的count()方法
+        fields = ('id','name','articles_category','arts')
