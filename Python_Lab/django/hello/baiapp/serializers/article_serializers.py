@@ -167,7 +167,7 @@ class MyCharField(serializers.CharField): #定义自己想返回string字段类�
         return data_list
 class ArticleSerilizers(serializers.ModelSerializer):
 
-    category = serializers.IntegerField(source='category.id')
+    category = serializers.IntegerField(source='category.id') #返回关联表的id字段
     class Meta:
         model = Article
         fields = '__all__'
