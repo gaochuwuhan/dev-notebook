@@ -42,3 +42,7 @@ class Httpres:
             json_data=JSONRenderer().render(ser.data)
             return HttpResponse(json_data,content_type='application/json',status=201)
         return JsonResponse(ser.errors,status=400)
+    
+    def deletemd(self,instance):
+        instance.delete()
+        return HttpResponse(status=204)

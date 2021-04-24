@@ -5,11 +5,22 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
+
+class Tag(models.Model):
+    name = models.CharField(verbose_name='标签名字',max_length=10)
+    created_name = models.DateTimeField()
+
+    def __str__(self):
+        return self.name
 class Article(models.Model):
     title = models.CharField(verbose_name="标题名",max_length=100)
     vnum = models.IntegerField(verbose_name="浏览量") #verbose_name代表表头名
     content = models.TextField(verbose_name="内容")
     category = models.ForeignKey(to=Category,on_delete=models.CASCADE,related_name='articles_category')    #related_name是反向查找
+    tags = models.ManyToManyField(to=Tag,related_name='articles_tag')
 
     def __str__(self):
         return self.title
+
+
+    

@@ -41,19 +41,21 @@ def card_account(request):
 
 def account_detail(request,pk):
     httpres=Httpres(md=Account,pk=pk,slz=AccountSerializers)
-    if request.method == 'POST':
+    if request.method == 'POST': #由于post是新增一行，所以不用判定是否存在
         return httpres.postmd(request=request)
     else:    
         try:
             acc=httpres.md.objects.get(pk=pk)
         except httpres.md.DoesNotExist as e:
-            return HttpResponse(status=404)
+            return HttpResponse(status=404)  #不存在的行不能做以下四种请求
         if request.method == 'GET':
             return httpres.getmd()
         if request.method == 'PUT':
             return httpres.putmd(request=request,instance=acc)
         if request.method == 'PATCH':
             return httpres.patchmd(request=request,instance=acc)
+        if request.method == 'DELETE':
+            return httpres.deletemd(instance=acc)
 
 
     
