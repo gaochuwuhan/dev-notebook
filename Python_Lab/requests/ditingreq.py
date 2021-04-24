@@ -10,7 +10,7 @@ class Reqpar:
         self.header=self.getheader()
         self.body=self.data()
     def getheader(self):
-        api_key = "r8YpV93Y.6HRpugAluz9FTn8F"
+        api_key = "r8YpV9HRpugAluz9FTn8F"
         authorization = "Api-Key " + api_key
         headers = {"AUTHORIZATION": f"{authorization}",
         "Content-Type": "application/json"}
