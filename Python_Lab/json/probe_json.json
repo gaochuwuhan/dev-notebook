@@ -1,0 +1,10 @@
+[({'id': 4, 'account_id': None, 'password': None, 'subnets': ['10.2.0.0/16', '192.168.30.0/24', '192.168.0.0/24', '192.168.1.0/24', '202.206.0.0/16', '188.77.0.0/16', '239.239.0.0/16', '172.20.0.0/16', '224.0.0.0/16', '172.21.0.0/16', '255.255.0.0/16', '169.254.0.0/16'], 'cert_id': None, 'device_id': 1838, 'ip_manage': None, 'state': None},), 
+({'id': 2, 'account_id': None, 'password': None, 'subnets': ['192.168.10.0/24', '10.1.2.0/24'], 'cert_id': None, 'device_id': 1835, 'ip_manage': '192.168.88.34', 'state': None},), 
+({'id': 5, 'account_id': None, 'password': None, 'subnets': ['192.168.10.0/24', '10.1.2.0/24', '192.168.88.0/24'], 'cert_id': None, 'device_id': 2887, 'ip_manage': None, 'state': None},), 
+({'id': 3, 'account_id': None, 'password': None, 'subnets': ['202.206.212.0/24', '202.206.213.0/24'], 'cert_id': None, 'device_id': 1837, 'ip_manage': None, 'state': None},), 
+({'id': 1, 'account_id': None, 'password': None, 'subnets': ['192.168.88.0/24'], 'cert_id': None, 'device_id': 1834, 'ip_manage': '192.168.88.158', 'state': None},)]
+
+
+
+[({"x":1},{"x2":2}),
+({"y"})]

@@ -1,12 +1,13 @@
 import psycopg2
 
+# from logging.logger import logger
 class Opdb:
     def __init__(self,dbname,user,password,host,port):
-        self.dbname="apiapp"
-        self.user="apiapp"
-        self.password="Password01!"
-        self.host="192.168.88.163"
-        self.port="5432"
+        self.dbname=dbname
+        self.user=user
+        self.password=password
+        self.host=host
+        self.port=port
         self.conn,self.cursor=self.doconn()
     def doconn(self):
         conn = psycopg2.connect(dbname=self.dbname, user=self.user,
@@ -16,10 +17,6 @@ class Opdb:
     def dosql(self,sql_str):
         self.cursor.execute(sql_str)
         res=self.cursor.fetchall()
-        return res
+        return res  #返回一个list，list中的每个元素是一个元祖，元祖里面是一行dict数据，可以这样记，一张表有多行是可以重复的所以最外面是list；一行字段不能重复，所以用元祖；字段和值一一映射所以用dict
     def close(self):
         self.conn.close()
-
-
-
- 
