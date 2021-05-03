@@ -11,7 +11,7 @@ class AccountSerializers(serializers.ModelSerializer):
 
 class ContactSerializers(serializers.ModelSerializer):
 
-    # acc=serializers.CharField(source='account.username')
+    # acc=serializers.CharField(source='account.username') #使返回的acc为account表里的username
     class Meta:
         model = Contact
-        fields = ('mobile','acconut')
+        fields = '__all__' #包含上面的acc

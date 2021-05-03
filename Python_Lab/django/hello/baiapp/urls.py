@@ -38,6 +38,8 @@ urlpatterns += [
     path('drf/django_article/<int:pk>/',normal_article.article_detail,name='article_detail'), #int里的pk是因为view中的函数pk
     path('drf/account_detail/<int:pk>/',one2one.account_detail,name='account_detail'), #测试onetoone主表
     path('drf/contact_detail/<int:pk>/',one2one.contact_detail,name='contact_detail'), #测试onetoone关联表单条
-    path('drf/card_contact/',one2one.card_contact,name='card_contact'),#测试onetoone关联表所有数据
+    path('drf/django_contact/',one2one.card_contact,name='card_contact'),#测试onetoone关联表所有数据
+    path('drf/django_account/',one2one.card_account,name='card_account'),#测试one2one account表所有数据
+    # path('drf/tags/',)
 
 ]

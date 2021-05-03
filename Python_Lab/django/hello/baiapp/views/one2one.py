@@ -17,27 +17,14 @@ logger=logging.getLogger("django")
 
 '''用的是django的http request和response '''
 
+#account model的http请求
 def card_account(request):
+    httpres=Httpres(md=Account,slz=AccountSerializers,pk=None) #因为是查询整个表，所以pk=None
     if request.method == 'GET':
-        accounts = Account.objects.all()
-        ser = AccountSerializers(accounts,many=True,context={'request':request})
-        # return JsonResponse(ser.data,safe=False)    #返回的是序列化后的json，
-        #也可以用httpresponse
-        json_data=JSONRenderer().render(ser.data)
-        return HttpResponse(json_data,content_type='application/json',status=200)
+        return httpres.getall(request=request) #把request传到context里
     
     elif request.method == 'POST': #反序列化
-        data = JSONParser().parse(request)  #取出request里的data，转换为python dict
-        re_ser = AccountSerializers(data=data,context={'request':request})
-        logger.info("GET data:",type(data),'Get re_ser:',type(re_ser))
-        if re_ser.is_valid():
-            re_ser.save()
-            json_data=JSONRenderer().render(re_ser.data)
-            logger.info("GET response data:",type(re_ser.data))  #想看一下返回给用户的数据是什么类型
-            # return JsonResponse(re_ser.data,status=201)
-            return HttpResponse(json_data,content_type='application/json',status=201) #不加content_type=json就会默认返回html
-            
-        return JsonResponse(re_ser.errors,status=400)
+        return httpres.postmd(request=request)
 
 def account_detail(request,pk):
     httpres=Httpres(md=Account,pk=pk,slz=AccountSerializers)
@@ -57,20 +44,14 @@ def account_detail(request,pk):
         if request.method == 'DELETE':
             return httpres.deletemd(instance=acc)
 
-
-    
-
-
-
-
-
+#contact model的http请求
 
 def card_contact(request):
+    httpres=Httpres(md=Contact,slz=ContactSerializers,pk=None) #因为是查询整个表，所以pk=None
     if request.method == 'GET':
-        con=Contact.objects.all()
-        ser=ContactSerializers(instance=con,many=True)
-        json_data=JSONRenderer().render(ser.data)
-        return HttpResponse(json_data,content_type='application/json',status=200)
+        return httpres.getall(request=request) #把request传到context里
+    elif request.method == 'POST':
+        return httpres.postmd(request=request)
     
 def contact_detail(request,pk):
 
