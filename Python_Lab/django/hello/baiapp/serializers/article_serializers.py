@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from baiapp.models.article import Article,Category
+from baiapp.models.article import Article,Category,Tag
 
 #普通序列化
 # class ArticleSerilizers(serializers.Serializer): 
@@ -159,7 +159,7 @@ from baiapp.models.article import Article,Category
 
 #source
 class MyCharField(serializers.CharField): #定义自己想返回string字段类，为了使想用的正式序列化类继承此类
-
+    #决定每个字段的返回值
     def to_representation(self,value): #重写to_representation方法，为了使继承这个类的序列化类能返回指定的字段
         data_list=[]
         for var in value:
@@ -167,14 +167,27 @@ class MyCharField(serializers.CharField): #定义自己想返回string字段类�
         return data_list
 class ArticleSerilizers(serializers.ModelSerializer):
 
-    category = serializers.IntegerField(source='category.id') #返回关联表的id字段
+    # category = serializers.IntegerField(source='category.id') #返回关联表的id字段
     class Meta:
         model = Article
         fields = '__all__'
+    
+    def to_representation(self,instance): #instance代表当前文章的实例
+        representation = super(ArticleSerilizers,self).to_representation(instance)
+        representation['category'] = CategorySerilizers(instance.category).data.pop('name')
+        representation['tags'] = [t.pop('name') for t in TagSerializers(instance.tags,many=True).data ]
+        return representation
+
 
 class CategorySerilizers(serializers.ModelSerializer):
 
-    arts = MyCharField(source='articles_category.all')  #arts返回的是符合条件的article的quueryset,source的值会作为参数传到MyCharField的to_representation函数中给value
+    # arts = MyCharField(source='articles_category.all')  #arts返回的是符合条件的article的quueryset,source的值会作为参数传到MyCharField的to_representation函数中给value
     class Meta:
         model = Category
-        fields = ('id','name','articles_category','arts')
+        fields = ('id','name','articles_category')
+
+class TagSerializers(serializers.ModelSerializer):
+    created_time = serializers.DateTimeField(format='%Y-%m-%d')
+    class Meta:
+        model = Tag
+        fields = '__all__'

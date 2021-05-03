@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls import url,include
 from baiapp.views import ArticleViewsets
 from baiapp.views import (
-    text,jsonview,render,friends,rest_friends,normal_article,category_article,one2one
+    text,jsonview,render,friends,rest_friends,normal_article,category_article,one2one,tag_article
 )
 from rest_framework.routers import DefaultRouter
 
@@ -40,6 +40,6 @@ urlpatterns += [
     path('drf/contact_detail/<int:pk>/',one2one.contact_detail,name='contact_detail'), #测试onetoone关联表单条
     path('drf/django_contact/',one2one.card_contact,name='card_contact'),#测试onetoone关联表所有数据
     path('drf/django_account/',one2one.card_account,name='card_account'),#测试one2one account表所有数据
-    # path('drf/tags/',)
-
+    path('drf/django_tags/',tag_article.django_tag,name='taglist'),
+    path('drf/tag_detail/<int:pk>/',tag_article.tag_detail,name='tag_detail'),
 ]

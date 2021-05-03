@@ -8,7 +8,7 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(verbose_name='标签名字',max_length=10)
-    created_name = models.DateTimeField()
+    created_time = models.DateTimeField()
 
     def __str__(self):
         return self.name
