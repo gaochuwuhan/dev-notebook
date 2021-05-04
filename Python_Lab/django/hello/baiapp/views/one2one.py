@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status  #为了返回状态码
 from rest_framework.decorators import api_view,APIView  #为了使用视图装饰器
 
-from baiapp.core.django_http import Httpres #导入Django http相应的封装类
+from hello.core.django_http import Httpres #导入Django http相应的封装类
 
 logger=logging.getLogger("django")
 

@@ -1,4 +1,4 @@
-from baiapp.core.django_http import Httpres
+from hello.core.django_http import Httpres
 from baiapp.models import Tag
 from baiapp.serializers import TagSerializers
 from django.http import HttpResponse

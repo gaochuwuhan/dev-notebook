@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'baiapp',
     'rest_framework',
     "field_history",
+    "app01",
 ]
 
 MIDDLEWARE = [
