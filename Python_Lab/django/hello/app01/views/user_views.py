@@ -65,7 +65,7 @@ class User_detail(APIView):
 
     def put(self,request,*args,**kwargs):
         u = self.get_object(kwargs.get('pk'))
-        ser = UserSerializers(instance=u,data=request.data, context={'request':request})
+        ser = UserSerializers(instance=u,data=request.data, context={'request':request}) #注意drf中取出数据是request.data
         if ser.is_valid():
             ser.save()
             return Response(ser.data,status=status.HTTP_201_CREATED)
