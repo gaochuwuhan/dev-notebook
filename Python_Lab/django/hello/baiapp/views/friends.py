@@ -4,7 +4,7 @@ from django.views import View
 import json
 from django.http import HttpResponse
 
-'''baiapp/friends/列表视图'''
+'''baiapp/friends/列表类视图，这种cbv需要在url中使用as.view()'''
 class Friendview(View):
     #获取所有朋友
     def get(self,request):

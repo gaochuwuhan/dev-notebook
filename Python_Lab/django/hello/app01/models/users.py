@@ -9,3 +9,6 @@ class User(models.Model):
     phone = models.CharField(max_length=11,verbose_name='手机号')
     gender = models.IntegerField(choices=genders,verbose_name='性别')
     pwd = models.CharField(verbose_name='密码',max_length=64)
+
+    def __str__(self):
+        return self.name
