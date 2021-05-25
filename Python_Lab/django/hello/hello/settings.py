@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "field_history",
     "app01",
+    "app02",
 ]
 
 MIDDLEWARE = [

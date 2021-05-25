@@ -39,5 +39,7 @@ urlpatterns = [ #django默认的admin页面
 urlpatterns += [    #意思是urlpatterns=urlpatterns+后面的path
     path ('baiapp/', include('baiapp.urls')),  #去子app中将url路径写到include中，则访问“127.0.0.1:8000/baifirst/baiapp.urls的path/” 就能访问到bai.view 的response
     path ('app01/',include('app01.urls')),
+    path ('app02/',include('app02.urls')),
+    
 ]
 
