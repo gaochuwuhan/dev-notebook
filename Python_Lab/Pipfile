@@ -9,7 +9,7 @@ ipython = "*"
 [packages]
 pyvmomi = "==6.7.1"
 pysphere = "*"
-django = "*"
+django = "==3.0"
 psycopg2-binary = "==2.8.6"
 pytest = "*"
 ipaddress = "*"

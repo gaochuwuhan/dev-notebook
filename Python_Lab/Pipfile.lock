@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "21595531258f07c91fab31bf50cc279aea92f6ca748cc1f3bfe8988f8f4f35d5"
+            "sha256": "fde37cd049027def1faf4f87efc634f6f77c1518de095b694cfed19857a06c2f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -105,11 +105,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:13ac78dbfd189532cad8f383a27e58e18b3d33f80009ceb476d7fcbfc5dcebd8",
-                "sha256:7e0a1393d18c16b503663752a8b6790880c5084412618990ce8a81cc908b4962"
+                "sha256:6f857bd4e574442ba35a7172f1397b303167dae964cf18e53db5e85fe248d000",
+                "sha256:d98c9b6e5eed147bc51f47c014ff6826bd1ab50b166956776ee13db5a58804ae"
             ],
             "index": "pypi",
-            "version": "==3.2.3"
+            "version": "==3.0"
         },
         "django-celery-beat": {
             "hashes": [
@@ -160,10 +160,10 @@
         },
         "google-auth": {
             "hashes": [
-                "sha256:588bdb03a41ecb4978472b847881e5518b5d9ec6153d3d679aa127a55e13b39f",
-                "sha256:9ad25fba07f46a628ad4d0ca09f38dcb262830df2ac95b217f9b0129c9e42206"
+                "sha256:044d81b1e58012f8ebc71cc134e191c1fa312f543f1fbc99973afe28c25e3228",
+                "sha256:b3ca7a8ff9ab3bdefee3ad5aefb11fc6485423767eee016f5942d8e606ca23fb"
             ],
-            "version": "==1.30.0"
+            "version": "==1.30.1"
         },
         "humanize": {
             "hashes": [
@@ -633,10 +633,10 @@
         },
         "websocket-client": {
             "hashes": [
-                "sha256:2e50d26ca593f70aba7b13a489435ef88b8fc3b5c5643c1ce8808ff9b40f0b32",
-                "sha256:d376bd60eace9d437ab6d7ee16f4ab4e821c9dae591e1b783c58ebd8aaf80c5c"
+                "sha256:3e2bf58191d4619b161389a95bdce84ce9e0b24eb8107e7e590db682c2d0ca81",
+                "sha256:abf306dc6351dcef07f4d40453037e51cc5d9da2ef60d0fc5d0fe3bcda255372"
             ],
-            "version": "==0.59.0"
+            "version": "==1.0.1"
         }
     },
     "develop": {
