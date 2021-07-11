@@ -1,0 +1,3 @@
+set1= set()
+set2= {'a1165a9f-ceb5-40ec-97e4-7a289ce1582b', '9663fae5-85b5-4626-ac78-adfa2d7e2a8e', '8f679b25-58d4-4f1d-bfa5-7c52169b3f69', '686d0ad9-49ff-4fd8-bab9-332981663174', 'c6d237a2-0273-4d55-81d4-2c399f218708', 'f743ed79-650e-45bd-a20a-28f5216c19bf'}
+print(set2-set1)

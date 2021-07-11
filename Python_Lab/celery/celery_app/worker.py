@@ -1,4 +1,4 @@
-#执行任务的文件，也可以在python终端执行
+#执行任务发布者的文件，也可以在python终端执行
 from app import celery_tasks,add
 import time
 

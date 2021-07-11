@@ -15,7 +15,7 @@ import django
 django.setup()
  
 # 实例化 Celery,项目名称
-app = Celery('djangocelerydemo',broker='redis://localhost:6379/0',backend='redis://localhost')
+app = Celery('djangocelerydemo',broker='redis://localhost:6379/10',backend='redis://localhost:6379/11')
  
 # 解决时区问题
 app.now = datetime.now
@@ -29,7 +29,3 @@ app.autodiscover_tasks(['celerytest',],related_name='api_tasks')
 # 解决celery不能root用户启动的问题
 platforms.C_FORCE_ROOT = True
  
-# 任务过期时间
-# CELERY_TASK_RESULT_EXPIRES = 60 * 60 * 24
-# 有些情况下可以防止死锁
-CELERYD_FORCE_EXECV = True

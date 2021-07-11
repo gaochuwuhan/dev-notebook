@@ -1,6 +1,116 @@
-lists = []
-data={"value":1,"name":"network"}
-item=[{"value":11,"name":"plc","is_leaf":True},{"value":21,"name":"hmi","is_leaf":True}]
-re = data.update({"children": item})
-lists.append(data)
-print (lists)
+# lists = []
+# data={"value":1,"name":"network"}
+# item=[{"value":11,"name":"plc","is_leaf":True},{"value":21,"name":"hmi","is_leaf":True}]
+# re = data.update({"children": item})
+# lists.append(data)
+
+data= {
+        "storage_total": "96.3G",
+        "storage_used": "10.8G",
+        "cpu_history": [
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%",
+            "0.0%"
+        ],
+        "cpu_history_time": [
+            "19",
+            "18",
+            "17",
+            "16",
+            "15",
+            "14",
+            "13",
+            "12",
+            "11",
+            "10",
+            "09",
+            "08",
+            "07",
+            "06",
+            "05",
+            "04",
+            "03",
+            "02",
+            "01",
+            "00",
+            "23",
+            "22",
+            "21"
+        ],
+        "mem_total": "7.8G",
+        "mem_used_history": [
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G",
+            "2.1G"
+        ],
+        "mem_used_history_time": [
+            "19",
+            "18",
+            "17",
+            "16",
+            "15",
+            "14",
+            "13",
+            "12",
+            "11",
+            "10",
+            "09",
+            "08",
+            "07",
+            "06",
+            "05",
+            "04",
+            "03",
+            "02",
+            "01",
+            "00",
+            "23",
+            "22",
+            "21"
+        ],
+        "device": {
+            "id": "gateway_01",
+            "ip": null
+        }
+    }
+print (data.get("storage_used")[:-1])
